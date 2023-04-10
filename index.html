@@ -16,28 +16,31 @@
     <section class="todo_wrapper">
 
         <header>
-            <input type="text" name="" id="" placeholder="Tippe ein...">
-            <button>Add</button>
+            <form id="add_button_form">
+                <input type="text" name="" id="listInput" placeholder="Tippe ein...">
+                <button>Add</button>
+            </form>
         </header>
 
         <main>
-            <section class="filter_and_options">
+            <section class="filter_and_option">
 
                 <h1 class="section_title">Filter & Options</h1>
-                <span class="radios">
-                    <input type="radio" name="todo" id="all"><label>All</label>
-                    <input type="radio" name="todo" id="open"><label>Open</label>
-                    <input type="radio" name="todo" id="done"><label>Done</label>
+                <form action="" id="filter_and_options">
+                    <span class="radios">
+                        <input type="radio" name="todo" id="all" value="all"><label>All</label>
+                        <input type="radio" name="todo" id="open" value="open"><label>Open</label>
+                        <input type="radio" name="todo" id="done" value="done"><label>Done</label>
 
 
-                </span>
-                <span class="remove_button">
-                    <button>Remove Todos</button>
-                </span>
-
+                    </span>
+                    <span class="remove_button">
+                        <button id="remove_button">Remove Done Todos</button>
+                    </span>
+                </form>
                 <section class="active_todos">
                     <h1 class="section_title">Your Todos</h1>
-                    <ul class="todo_list">
+                    <ul id="todo_list">
                         <li>hallo</li>
                     </ul>
                 </section>
@@ -78,7 +81,7 @@
 
 
 
-    <script src="script.js"></script>
+    <script src="script4.js"></script>
 </body>
 
 </html>

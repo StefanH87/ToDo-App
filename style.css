@@ -1,3 +1,7 @@
 :root {
   font-family: "Quicksand", sans-serif;
 }
+
+.strike {
+  text-decoration: line-through;
+}
