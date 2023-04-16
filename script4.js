@@ -32,17 +32,19 @@ const loadState = () => {
 // const list = document.getElementById("todo_list");
 // list.innerHTML = "";
 
-function renderElement(description) {
+function renderElement(todo) {
   const newLi = document.createElement("li");
   const newCheckBox = document.createElement("input");
   newCheckBox.type = "checkbox";
+  newCheckBox.checked = todo.done;
 
-  const todoText = document.createTextNode(description);
+  const todoText = document.createTextNode(todo.description);
   //------------wenn checkboc true -- durchgstrichen-----//
   newCheckBox.addEventListener("change", (e) => {
     newLi.classList.toggle("strike");
-    newCheckBox.checked = true;
-    console.log(e.target.parentElement.done);
+    // newCheckBox.checked = true;
+    todo.done = newCheckBox.checked;
+    console.log(todo);
   });
 
   newLi.append(newCheckBox, todoText);
@@ -74,7 +76,7 @@ addButton.addEventListener("submit", (event) => {
 function render() {
   todoUl.innerHTML = "";
   for (let todo of state.todos) {
-    const newTodoElement = renderElement(todo.description);
+    const newTodoElement = renderElement(todo);
     todoUl.append(newTodoElement);
   }
 }
