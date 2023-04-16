@@ -4,7 +4,7 @@ const state = {
     {
       id: 1,
       description: "Learn HTML",
-      done: true,
+      done: false,
     },
     {
       id: 2,
@@ -31,6 +31,10 @@ const loadState = () => {
 
 // const list = document.getElementById("todo_list");
 // list.innerHTML = "";
+const form = document.getElementById("filter_and_options");
+form.addEventListener("click", (event) => {
+  event.preventDefault();
+});
 
 function renderElement(todo) {
   const newLi = document.createElement("li");
@@ -57,7 +61,7 @@ function renderElement(todo) {
 function addNewTodo() {
   state.todos.push({
     id: +new Date(),
-    description: formTextValue.value,
+    description: formTextValue.value.trim(), // am ende und anfang Leerzeichen entfernen
     done: false,
   });
 
@@ -71,10 +75,12 @@ addButton.addEventListener("submit", (event) => {
   addNewTodo();
 
   render();
+  updateState();
 });
 
 function render() {
   todoUl.innerHTML = "";
+
   for (let todo of state.todos) {
     const newTodoElement = renderElement(todo);
     todoUl.append(newTodoElement);
@@ -82,10 +88,80 @@ function render() {
 }
 render();
 
-// filter--WIP
-const checkedElement = state.todos.filter(function (e) {
-  console.log(e.done);
+//===================================================//
+//check keine doppelten Todos
+
+function checkDuplicateTodos() {
+  for (let description of state.todos) {
+    if (input === description) {
+      console.log("Zwilling");
+    } else {
+      console.log("alles cool");
+    }
+  }
+  return;
+}
+
+//==============================================//
+
+//Delete
+//=====================================================================//
+
+const deleteBtn = document.getElementById("remove_button");
+
+deleteBtn.addEventListener("click", (event) => {
+  console.log("huhuh");
+
+  deleteTodo();
+  render();
 });
+
+// function deleteTodo() {
+//   let todoIndex = state.todos.findIndex((todo) => todo.done === true);
+//   let todoDone = todoIndex;
+//   console.log("position" + todoDone);
+//   state.todos.splice(todoDone, -1);
+// }
+// // function deleteTodo() {
+// //   let todoIndex = state.findIndex((e) => e.done === true);
+// //   // let todoZustand = todoIndex;
+// //   console.log(todoIndex);
+// // }
+
+function deleteTodo() {
+  let todoIndex = state.todos.filter((todo) => todo.done === true);
+  let Zustand = todoIndex;
+  render();
+  console.log(Zustand);
+}
+
+//==================================================//
+
+const radiosFilterForm = document.getElementById("filter_and_options");
+
+radiosFilterForm.addEventListener("change", (event) => {
+  const radioValue = event.target.value;
+  switch (radioValue) {
+    case "all":
+      render(state.todos);
+      break;
+    case "open":
+      render(state.todos.filter((todo) => todo.done === false));
+      break;
+    case "done":
+      render(state.todos.filter((todo) => todo.done === true));
+      break;
+    default:
+      return;
+  }
+  console.log(radioValue);
+  render();
+});
+
+// filter--WIP
+// const checkedElement = state.todos.filter(function (e) {
+//   console.log(e.done);
+// });
 
 function checkState() {
   for (const done of state.todos) {
@@ -97,4 +173,3 @@ function checkState() {
     }
   }
 }
-checkState();

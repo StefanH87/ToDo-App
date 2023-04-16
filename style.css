@@ -1,7 +1,94 @@
-:root {
-  font-family: "Quicksand", sans-serif;
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+:root {
+  font-family: "Quicksand", sans-serif;
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+
+  width: 100vw;
+  height: 100vh;
+}
+header {
+  margin: 5rem 0 0 0;
+}
+/*===============================================================*/
+/*===============================================================*/
+.todo_wrapper {
+  width: 30vw;
+  height: auto;
+}
+
+#add_button_form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 10vh;
+  width: 100%;
+
+  background: green;
+  padding: 1rem;
+}
+
+#listInput {
+  all: unset;
+  background: white;
+  padding: 0.5rem;
+  width: 70%;
+}
+
+.add-button {
+  all: unset;
+  background: yellow;
+  width: 20%;
+  height: 2rem;
+}
+/*===============================================================*/
+/*===============================================================*/
 .strike {
   text-decoration: line-through;
+}
+li:nth-of-type(odd) {
+  background: yellow;
+}
+li:nth-of-type(even) {
+  background: red;
+}
+
+li {
+  list-style: none;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 0.3rem 0 0.3rem 0;
+}
+
+li > input[type="checkbox"] {
+  all: unset;
+  display: block;
+  border: 1px solid black;
+  margin: 0 3rem 0 0;
+  background: white;
+  height: 2rem;
+  width: 2rem;
+}
+li > input[type="checkbox"]:checked {
+  background: red;
+}
+
+li {
+  display: flex;
+  align-items: center;
+
+  color: red;
+  width: 100%;
 }
