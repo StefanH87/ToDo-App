@@ -82,7 +82,7 @@ addButton.addEventListener("submit", (event) => {
 
 function render() {
   todoUl.innerHTML = "";
-  state.Nidoking = loadState().Nidoking; //nicht die methode gemeint sondern dr Name des States
+  state.Nidoking = loadState().Nidoking; //nicht die methode gemeint sondern dr Name des States - vorher stand Filter
   state.todos = loadState().todos;
   // loadState();
   for (let todo of state.todos) {
@@ -121,9 +121,9 @@ deleteBtn.addEventListener("click", (event) => {
   render();
 });
 function deleteTodo() {
-  let todoIndex = state.todos.filter((todo) => todo.done === false);
-  state.todos = todoIndex;
-
+  let todoIndexArr = state.todos.filter((todo) => todo.done === false);
+  state.todos = todoIndexArr;
+  updateState();
   console.log(state);
 }
 
