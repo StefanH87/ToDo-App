@@ -17,69 +17,39 @@
 
         <header>
             <form id="add_button_form">
-                <input type="text" name="" id="listInput" placeholder="Tippe ein...">
+                <input type="text" name="" id="listInput" class="input-field" placeholder="Tippe ein...">
                 <button class="add-button">Add</button>
             </form>
         </header>
 
         <main>
             <section class="filter_and_option">
-
-                <h1 class="section_title">Filter & Options</h1>
+                <h1 class="todo_title">Your Todos</h1>
+                <h2 class="section_title">Filter & Options</h2>
                 <form action="" id="filter_and_options">
                     <span class="radios">
-                        <input type="radio" name="todo" id="all" value="all"><label>All</label>
-                        <input type="radio" name="todo" id="open" value="open"><label>Open</label>
-                        <input type="radio" name="todo" id="done" value="done"><label>Done</label>
+                        <input type="radio" name="todo" id="all" value="all"> <label for="all"></label>All</label>
+                        <input type="radio" name="todo" id="open" value="open"> <label for="open">Open
+                            <input type="radio" name="todo" id="done" value="done"><label for="done">Done
 
 
                     </span>
-                    <span class="remove_button">
-                        <button id="remove_button">Remove Done Todos</button>
-                    </span>
+
+                    <button id="remove_button" class="delete-btn">Remove Done Todos</button>
+
                 </form>
-                <section class="active_todos">
-                    <h1 class="section_title">Your Todos</h1>
-                    <ul id="todo_list">
-                        <li>hallo</li>
-                    </ul>
-                </section>
-
-
             </section>
+            <section class="active_todos">
 
-
-
-
-
+                <ul id="todo_list">
+                    <li>hallo</li>
+                </ul>
+            </section>
 
 
         </main>
 
-
-
-
-
-
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <script src="script4.js"></script>
 </body>

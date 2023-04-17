@@ -1,5 +1,5 @@
 const state = {
-  filter: all,
+  Nidoking: "all",
   todos: [
     {
       id: 1,
@@ -43,11 +43,14 @@ function renderElement(todo) {
   newCheckBox.checked = todo.done;
 
   const todoText = document.createTextNode(todo.description);
+
   //------------wenn checkboc true -- durchgstrichen-----//
+
   newCheckBox.addEventListener("change", (e) => {
     newLi.classList.toggle("strike");
-    // newCheckBox.checked = true;
+
     todo.done = newCheckBox.checked;
+    updateState();
     console.log(todo);
   });
 
@@ -64,7 +67,7 @@ function addNewTodo() {
     description: formTextValue.value.trim(), // am ende und anfang Leerzeichen entfernen
     done: false,
   });
-
+  updateState();
   event.target.reset();
 }
 
@@ -75,17 +78,19 @@ addButton.addEventListener("submit", (event) => {
   addNewTodo();
 
   render();
-  updateState();
 });
 
 function render() {
   todoUl.innerHTML = "";
-
+  state.Nidoking = loadState().Nidoking; //nicht die methode gemeint sondern dr Name des States
+  state.todos = loadState().todos;
+  // loadState();
   for (let todo of state.todos) {
     const newTodoElement = renderElement(todo);
     todoUl.append(newTodoElement);
   }
 }
+
 render();
 
 //===================================================//
@@ -115,24 +120,11 @@ deleteBtn.addEventListener("click", (event) => {
   deleteTodo();
   render();
 });
-
-// function deleteTodo() {
-//   let todoIndex = state.todos.findIndex((todo) => todo.done === true);
-//   let todoDone = todoIndex;
-//   console.log("position" + todoDone);
-//   state.todos.splice(todoDone, -1);
-// }
-// // function deleteTodo() {
-// //   let todoIndex = state.findIndex((e) => e.done === true);
-// //   // let todoZustand = todoIndex;
-// //   console.log(todoIndex);
-// // }
-
 function deleteTodo() {
-  let todoIndex = state.todos.filter((todo) => todo.done === true);
-  let Zustand = todoIndex;
-  render();
-  console.log(Zustand);
+  let todoIndex = state.todos.filter((todo) => todo.done === false);
+  state.todos = todoIndex;
+
+  console.log(state);
 }
 
 //==================================================//
@@ -140,6 +132,7 @@ function deleteTodo() {
 const radiosFilterForm = document.getElementById("filter_and_options");
 
 radiosFilterForm.addEventListener("change", (event) => {
+  event.preventDefault();
   const radioValue = event.target.value;
   switch (radioValue) {
     case "all":
