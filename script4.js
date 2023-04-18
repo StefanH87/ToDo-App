@@ -31,10 +31,10 @@ const loadState = () => {
 
 // const list = document.getElementById("todo_list");
 // list.innerHTML = "";
-const form = document.getElementById("filter_and_options");
-form.addEventListener("click", (event) => {
-  event.preventDefault();
-});
+// const form = document.getElementById("filter_and_options");
+// form.addEventListener("click", (event) => {
+//   event.preventDefault();
+// });
 
 function renderElement(todo) {
   const newLi = document.createElement("li");
@@ -51,7 +51,7 @@ function renderElement(todo) {
 
     todo.done = newCheckBox.checked;
     updateState();
-    console.log(todo);
+    // console.log(todo);
   });
 
   newLi.append(newCheckBox, todoText);
@@ -80,14 +80,35 @@ addButton.addEventListener("submit", (event) => {
   render();
 });
 
-function render() {
+// function render() {
+//   todoUl.innerHTML = "";
+//   state.Nidoking = loadState().Nidoking; //nicht die methode gemeint sondern dr Name des States - vorher stand Filter
+//   state.todos = loadState().todos;
+//   // loadState();
+//   for (let todo of state.todos) {
+//     const newTodoElement = renderElement(todo);
+//     todoUl.append(newTodoElement);
+//   }
+
+// }
+function render(newFilterArray) {
   todoUl.innerHTML = "";
-  state.Nidoking = loadState().Nidoking; //nicht die methode gemeint sondern dr Name des States - vorher stand Filter
-  state.todos = loadState().todos;
-  // loadState();
-  for (let todo of state.todos) {
-    const newTodoElement = renderElement(todo);
-    todoUl.append(newTodoElement);
+  // console.log(newFilterArray);
+  if (newFilterArray === undefined) {
+    state.Nidoking = loadState().Nidoking; //nicht die methode gemeint sondern dr Name des States - vorher stand Filter
+    state.todos = loadState().todos;
+    // loadState();
+    for (let todo of state.todos) {
+      const newTodoElement = renderElement(todo);
+      todoUl.append(newTodoElement);
+    }
+  } else {
+    const richtigesArray = Array.from(newFilterArray);
+    for (let todo of richtigesArray) {
+      const newTodoElement = renderElement(todo);
+      todoUl.append(newTodoElement);
+    }
+    // console.log(richtigesArray);
   }
 }
 
@@ -115,16 +136,14 @@ function checkDuplicateTodos() {
 const deleteBtn = document.getElementById("remove_button");
 
 deleteBtn.addEventListener("click", (event) => {
-  console.log("huhuh");
-
   deleteTodo();
   render();
 });
+
 function deleteTodo() {
   let todoIndexArr = state.todos.filter((todo) => todo.done === false);
   state.todos = todoIndexArr;
   updateState();
-  console.log(state);
 }
 
 //==================================================//
@@ -132,23 +151,27 @@ function deleteTodo() {
 const radiosFilterForm = document.getElementById("filter_and_options");
 
 radiosFilterForm.addEventListener("change", (event) => {
-  event.preventDefault();
+  // event.preventDefault();
+  // console.log(event.target.value);
   const radioValue = event.target.value;
   switch (radioValue) {
     case "all":
-      render(state.todos);
+      render();
+
       break;
     case "open":
       render(state.todos.filter((todo) => todo.done === false));
+
       break;
     case "done":
       render(state.todos.filter((todo) => todo.done === true));
+
       break;
     default:
       return;
   }
-  console.log(radioValue);
-  render();
+
+  // render();
 });
 
 // filter--WIP
