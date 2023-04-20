@@ -1,15 +1,24 @@
-//---------------State------------------------------//
 const state = {
-  filter: all,
-  toDos: [
-    { description: "Learn HTML", done: true },
-    { description: "Learn CSS", done: false },
-    { description: "Learn Javascript", done: false },
+  Nidoking: "all",
+  todos: [
+    {
+      id: 1,
+      description: "Learn HTML",
+      done: false,
+    },
+    {
+      id: 2,
+      description: "Learn CSS",
+      done: false,
+    },
   ],
 };
-//---------------State------------------------------//
-//                                               //
-//----------------------local Storage --------//
+
+//==========================================================//
+const addButton = document.getElementById("add_button_form");
+const todoUl = document.getElementById("todo_list");
+const formTextValue = document.getElementById("listInput");
+//==========================================================//
 const updateState = () => {
   localStorage.setItem("todoAppList", JSON.stringify(state));
 };
@@ -17,68 +26,152 @@ const loadState = () => {
   return JSON.parse(localStorage.getItem("todoAppList"));
 };
 
-//----------------------local Storage - End------//
+//  ToDo Item erstellen
+//=========================================================//
 
-const addTodoBtn = document.querySelector("#add_button");
-const removeBtn = document.querySelector("#remove_button");
-const toDoNewTxt = document.querySelector("#listInput");
+// const list = document.getElementById("todo_list");
+// list.innerHTML = "";
+// const form = document.getElementById("filter_and_options");
+// form.addEventListener("click", (event) => {
+//   event.preventDefault();
+// });
 
-//--------------------------------------------------------------------------//
+function renderElement(todo) {
+  const newLi = document.createElement("li");
+  const newCheckBox = document.createElement("input");
+  newCheckBox.type = "checkbox";
+  newCheckBox.checked = todo.done;
 
-//--------------------------------------------------------------------------------//
+  const todoText = document.createTextNode(todo.description);
 
-function renderTodos() {
-  const toDoList = document.querySelector("#todo_list");
-  toDoList.innerHTML = "";
+  //------------wenn checkboc true -- durchgstrichen-----//
 
-  state.toDos.forEach((todo) => {
-    const renderTodosElement = document.createElement("li"); // erstellt neues LI Element
-
-    renderTodosElement.todoObj = todo; // gibt dem Element neue Eigenschaften, für später
-
-    // erstellt neues Input Element
-    const checkbox = document.createElement("input");
-    // bestimt input type
-    checkbox.type = "checkbox";
-    checkbox.checked = todo.done;
-    // wird im HTML eingebunden
-    renderTodosElement.appendChild(checkbox);
-
-    // erstellt toDo text
-    const todoText = document.createTextNode(todo.description);
-    renderTodosElement.append(todoText); // bindet ihn ein
-
-    toDoList.appendChild(renderTodosElement);
+  newCheckBox.addEventListener("change", (e) => {
+    todo.done = newCheckBox.checked;
+    updateState();
+    // console.log(todo);
   });
+
+  newLi.append(newCheckBox, todoText);
+
+  return newLi;
 }
 
-renderTodos();
+//===================================================//
+// zum State pushen
+function addNewTodo() {
+  state.todos.push({
+    id: +new Date(),
+    description: formTextValue.value.trim(), // am ende und anfang Leerzeichen entfernen
+    done: false,
+  });
+  updateState();
+  event.target.reset();
+}
 
-// zentraler Eventlistener---------aktualisiert und rendert den State-------------------------------//
-const toDoList = document.querySelector("#todo_list");
-toDoList.addEventListener("change", (e) => {
-  //   console.log(e.target.parentElement.todoObj);
+//===================================================//
+//verhindern senden und reload des HTML Form, Update State, Eventbinding
+addButton.addEventListener("submit", (event) => {
+  event.preventDefault();
+  // console.log(state.todos.includes(formTextValue.value));
 
-  const checkbox = e.target; // element ist chekcbox, da nur es einen change empfangen kann
-  const ListElement = checkbox.parentElement; //spircht List Element mit an
-  const todo = ListElement.todoObj;
+  // console.log(formTextValue.value);
+  // console.log(state.todos);
 
-  todo.done = checkbox.checked;
-  console.log(state);
+  if (
+    state.todos.some(
+      (todo) =>
+        todo.description.toLocaleLowerCase() ===
+        formTextValue.valuetoLocaleLowerCase()
+    )
+  ) {
+    window.alert("todo existiert bereits");
+  } else {
+    addNewTodo();
+
+    renderHtml();
+  }
+
+  // addNewTodo();
+
+  // renderHtml();
 });
 
-// zentraler Eventlistener---------aktualisiert und rendert den State-------------------------------//
+function renderHtml(newFilterArray) {
+  todoUl.innerHTML = "";
+  // console.log(newFilterArray);
+  if (newFilterArray === undefined) {
+    state.Nidoking = loadState().Nidoking; //nicht die methode gemeint sondern dr Name des States - vorher stand Filter
+    state.todos = loadState().todos;
+    // loadState();
+    for (let todo of state.todos) {
+      const newTodoElement = renderElement(todo);
+      todoUl.append(newTodoElement);
+    }
+  } else {
+    const richtigesArray = Array.from(newFilterArray);
+    for (let todo of richtigesArray) {
+      const newTodoElement = renderElement(todo);
+      todoUl.append(newTodoElement);
+    }
+    // console.log(richtigesArray);
+  }
+}
 
-addTodoBtn.addEventListener("click", function () {
-  const ul = document.getElementById("todo_list");
-  const newLi = document.createElement("li");
+renderHtml();
 
-  newLi.appendChild(liText);
+//===================================================//
+//check keine doppelten Todos
 
-  ul.appendChild(newLi);
+// function checkDuplicateTodos() {
+//   for (let description of state.todos) {
+//     if (formTextValue.value === state.todos.description) {
+//       console.log("Zwilling");
+//     } else {
+//       console.log("alles cool");
+//     }
+//   }
+//   console.log(checkDuplicateTodos);
+// }
+// console.log(checkDuplicateTodos);
+//==============================================//
+
+//Delete
+//=====================================================================//
+
+const deleteBtn = document.getElementById("remove_button");
+
+deleteBtn.addEventListener("click", (event) => {
+  deleteTodo();
+  renderHtml();
 });
 
-removeBtn.addEventListener("click", function () {
-  const ul = document.getElementById("todo_list");
-  ul.innerText = "";
+function deleteTodo() {
+  let todoIndexArr = state.todos.filter((todo) => todo.done === false);
+  state.todos = todoIndexArr;
+  updateState();
+}
+
+//==================================================//
+
+const radiosFilterForm = document.getElementById("filter_and_options");
+
+radiosFilterForm.addEventListener("change", (event) => {
+  const radioValue = event.target.value;
+  switch (radioValue) {
+    case "all":
+      renderHtml();
+
+      break;
+    case "open":
+      renderHtml(state.todos.filter((todo) => todo.done === false));
+
+      break;
+    case "done":
+      renderHtml(state.todos.filter((todo) => todo.done === true));
+
+      break;
+    default:
+      return;
+  }
 });

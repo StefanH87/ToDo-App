@@ -76,7 +76,7 @@ body {
   cursor: pointer;
   background: #99d98c;
   width: 25%;
-  padding: 0.5rem 0 0.5rem 0;
+  padding: 1rem 0 1rem 0;
   border-radius: 2rem;
   text-align: center;
   text-transform: uppercase;
@@ -87,7 +87,8 @@ body {
 }
 .add-button:hover {
   outline: #d9ed92 solid 4px;
-  color: #d9ed92;
+  color: #43aa8b;
+  background: #d9ed92;
 }
 .add-button:active {
   background: #d9ed92;
@@ -110,13 +111,13 @@ li {
   position: relative;
   width: 100%;
   height: calc(2rem + 2vh);
-
+  font-size: 1.3rem;
   list-style: none;
   border-radius: 5rem 0 0 5rem;
-  /* padding: 0.5rem 1rem 0.5rem 1rem; */
+
   margin: 0.5rem 0 0.5rem 0rem;
 
-  z-index: 10;
+  /* z-index: 10; */
 }
 
 li > input[type="checkbox"] {
@@ -128,7 +129,7 @@ li > input[type="checkbox"] {
   margin: 0 1.4rem 0 0;
   background: #d90429;
   height: 100%;
-  width: 15%;
+  width: 8%;
 }
 /*============================================================*/
 /*               List-Element    Checkbox          */
@@ -151,10 +152,6 @@ li > input[type="checkbox"]:checked {
   background: #90be6d;
 }
 
-input[type="checkbox"]:checked + li {
-  background: red;
-}
-
 li:hover {
   transform: scale(1.02);
 }
@@ -165,14 +162,34 @@ li:hover {
 
 .filter_and_option {
   background: #faf3dd;
-  margin: 1rem 0 0 0;
+  margin: 2rem 0 1.2rem 0;
   display: inline-block;
+  justify-content: center;
   width: 100%;
   padding: 0.5rem;
+  /* border-radius: 0 0 1rem 1rem; */
 }
 
 #filter_and_options {
   display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 1.5rem 1rem;
+  align-content: center;
+  margin: 1rem 0rem 0;
+
+  justify-content: space-between;
+}
+
+.section_title {
+  padding: 1rem 2.5rem 0;
+}
+h1 {
+  font-size: 1.4rem;
+}
+h2 {
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .todo_title {
@@ -183,8 +200,19 @@ li:hover {
   font-size: 1.3rem;
   padding: 0.5rem 0 0.5rem 0;
 
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
+
+.radio-wrapper {
+  flex-grow: 2;
+}
+
+.button-wrapper {
+  display: inline-flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
 /*=========================================================================================*/
 /*                      Radios                             */
 /*=========================================================================================*/
@@ -193,8 +221,9 @@ li:hover {
   all: unset;
   cursor: pointer;
   background: #99d98c;
-  width: 70%;
-  padding: 0.5rem 0 0.5rem 0;
+  width: 75%;
+
+  padding: 1rem 0 1rem 0;
   border-radius: 2rem;
   text-align: center;
   text-transform: uppercase;
@@ -212,18 +241,30 @@ li:hover {
 /*=========================================================================================*/
 /*                      Radios                             */
 /*=========================================================================================*/
-/* 
- input[type="radio"] {
-   all: unset; 
+.radios label {
+  font-size: 1.2rem;
+  font-weight: 200;
+  padding: 2rem;
+}
+#all {
+  border: 2px solid rgba(0, 0, 0, 0.7);
+}
+#done {
+  border: 2px solid #d90429;
+}
+#open {
+  border: 2px solid #99d98c;
+}
+
+input[type="radio"] {
+  all: unset;
   position: relative;
   display: block;
-  width: 15px;
-  height: 15px;
-
+  width: 20px;
+  height: 20px;
   border-radius: 100%;
   margin: 0 0.5rem 0 0;
-  border: 2px solid green;
-}  */
+}
 
 /* input[type="radio"]::after {
   content: "";
@@ -231,32 +272,44 @@ li:hover {
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  display: block;
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   background: red;
   border-radius: 100%;
   scale: 1;
 } */
 
-/* input[type="radio"]:focus {
-  border: 2px solid blue;
-} */
+#all:checked {
+  background: rgba(0, 0, 0, 0.9);
+}
 
-/* /* input[type="radio"]:checked + input[type="radio"]::after {
-  background: blue;
-}  */
+#done:checked {
+  background: #d90429;
+}
 
-/* .radios {
-  display: flex;
+#open:checked {
+  background: #99d98c;
+}
+
+.radios {
+  display: inline-flex;
   align-items: center;
-  width: 100%;
-  padding: 0.5rem 0 0.5rem 0;
+  padding: 0 1rem 0;
 }
 .radios > label {
   text-align: center;
-  margin: 0 1rem 0 0;
+  margin: 0 0 0 0.5rem;
   text-transform: uppercase;
   font-weight: 700;
-  padding: 0.3rem 0 0.3rem 0;
-}  */
+  padding: 0 0 0 0;
+}
+
+/*========================================*/
+
+footer {
+  width: 100%;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0 0 2rem 2rem;
+  margin: 2rem 0 0 0;
+}

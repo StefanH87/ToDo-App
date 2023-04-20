@@ -27,16 +27,22 @@
                 <h1 class="todo_title">Your Todos</h1>
                 <h2 class="section_title">Filter & Options</h2>
                 <form action="" id="filter_and_options">
-                    <span class="radios">
-                        <input type="radio" name="todo" id="all" value="all"> <label for="all"></label>All</label>
-                        <input type="radio" name="todo" id="open" value="open"> <label for="open">Open
-                            <input type="radio" name="todo" id="done" value="done"><label for="done">Done
+                    <div class="radio-wrapper">
+                        <span class="radios">
+                            <input type="radio" name="todo" id="all" value="all"> <label for="all">All</label>
+                        </span>
+                        <span class="radios radio-open">
+                            <input type="radio" name="todo" id="open" value="open"> <label for="open">Open</label>
+                        </span>
+                        <span class="radios radio-done">
+                            <input type="radio" name="todo" id="done" value="done"><label for="done">Done</label>
 
 
-                    </span>
-
-                    <button id="remove_button" class="delete-btn">Remove Done Todos</button>
-
+                        </span>
+                    </div>
+                    <div class="button-wrapper">
+                        <button id="remove_button" class="delete-btn">Remove Done Todos</button>
+                    </div>
                 </form>
             </section>
             <section class="active_todos">
@@ -48,10 +54,10 @@
 
 
         </main>
-
+        <footer></footer>
     </section>
 
-    <script src="script4.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
