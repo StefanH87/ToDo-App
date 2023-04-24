@@ -250,10 +250,10 @@ h2 {
   border: 2px solid rgba(0, 0, 0, 0.7);
 }
 #done {
-  border: 2px solid #d90429;
+  border: 2px solid #99d98c;
 }
 #open {
-  border: 2px solid #99d98c;
+  border: 2px solid #d90429;
 }
 
 input[type="radio"] {
@@ -284,11 +284,11 @@ input[type="radio"] {
 }
 
 #done:checked {
-  background: #d90429;
+  background: #99d98c;
 }
 
 #open:checked {
-  background: #99d98c;
+  background: #d90429;
 }
 
 .radios {

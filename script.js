@@ -1,17 +1,6 @@
 const state = {
   Nidoking: "all",
-  todos: [
-    {
-      id: 1,
-      description: "Learn HTML",
-      done: false,
-    },
-    {
-      id: 2,
-      description: "Learn CSS",
-      done: false,
-    },
-  ],
+  todos: [],
 };
 
 //==========================================================//
@@ -81,8 +70,7 @@ addButton.addEventListener("submit", (event) => {
   if (
     state.todos.some(
       (todo) =>
-        todo.description.toLocaleLowerCase() ===
-        formTextValue.valuetoLocaleLowerCase()
+        todo.description.toLowerCase() === formTextValue.value.toLowerCase()
     )
   ) {
     window.alert("todo existiert bereits");
