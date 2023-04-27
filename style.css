@@ -30,7 +30,7 @@
 
   --clr-all: var(--black-light);
   --clr-open: rgb(177, 5, 5);
-  --clr-done: var(--clr-light);
+  --clr-done: var(--clr-lightest);
 }
 
 html {
@@ -189,10 +189,8 @@ li:hover {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 0 1.5rem 2rem;
-  align-content: center;
+  padding: 1rem 1.5rem 2rem;
   margin: 1rem 0rem 0;
-
   justify-content: space-between;
 }
 
@@ -200,21 +198,29 @@ li:hover {
   padding: 1rem 2.5rem 0;
 }
 h1 {
-  font-size: 1.4rem;
+  font-size: 2.2rem;
+  background-image: linear-gradient(
+    90deg,
+    var(--clr-darkest),
+    var(--clr-highlight)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 h2 {
-  font-size: 1.2rem;
-  color: var(--clr-bgk-main);
+  font-size: 1.4rem;
+  color: var(--black-light);
+  margin-top: 0.5rem;
 }
 
 .todo_title {
   text-transform: uppercase;
-  width: 100%;
+  width: 94%;
   text-align: center;
   letter-spacing: 0.1rem;
-  font-size: 1.3rem;
-  padding: 0.5rem 0 0.5rem 0;
-
+  padding-block: 0.5rem;
+  margin-inline: auto;
   border-bottom: 1px solid var(--clr-bgk-main);
 }
 
@@ -260,6 +266,7 @@ h2 {
   font-size: 1.2rem;
   font-weight: 200;
   padding: 2rem;
+  color: var(--black-light);
 }
 #all {
   border: 2px solid var(--clr-all);
@@ -297,6 +304,7 @@ input[type="radio"] {
   display: inline-flex;
   align-items: center;
   padding: 0 1rem 0;
+  cursor: pointer;
 }
 .radios > label {
   text-align: center;
@@ -304,6 +312,7 @@ input[type="radio"] {
   text-transform: uppercase;
   font-weight: 700;
   padding: 0 0 0 0;
+  cursor: pointer;
 }
 
 /*========================================*/
